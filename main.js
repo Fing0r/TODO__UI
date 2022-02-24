@@ -9,7 +9,7 @@ view.btnsAddTask.forEach(btnAddTask => {
     e.currentTarget
       .closest(".todo__info")
       .querySelector(".todo__list")
-      .append(view.createTaskElement());
+      .append(view.createTaskElement()); 
 
     view.clearInputValue(e);
   });

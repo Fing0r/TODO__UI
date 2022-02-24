@@ -90,7 +90,7 @@ function createTaskElement() {
   <span class="todo__content"></span>`;
 
   const taskText = document.createElement('p');
-  taskText.className = 'todo__text';
+  taskText.className = 'todo__text'; 
   taskText.textContent = list[list.length - 1].name;
 
   const taskBtn = document.createElement('button');
