@@ -1,4 +1,4 @@
-import * as view from "/view.js";
+import * as view from "./view.js";
 
 view.btnsAddTask.forEach(btnAddTask => {
   btnAddTask.addEventListener('click', function (e) {
