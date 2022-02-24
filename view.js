@@ -10,31 +10,22 @@ const STATUS = {
   IN_PROGRESS: "In progress",
 }
 
-btnsAddTask.forEach(element => {
-  element.dataset.priority
-});
-
 function addTask(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
-  inputValue
   list.push({
-    name: inputValue.value.trim(),
+    name: e.currentTarget.previousElementSibling.value,
     priority: e.currentTarget.dataset.priority,
     status: STATUS.IN_PROGRESS
   });
 };
 
 function clearInputValue(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
-
-  inputValue.value = '';
+  e.currentTarget.previousElementSibling.value = '';
 };
 
-function removeTask(e) {
-  const taskValue = e.currentTarget.closest('.todo__info').querySelector('.todo__text')
 
-  list = list.filter((item) => item.name !== taskValue.textContent);
-  e.currentTarget.closest('.todo__task').remove();
+function removeTask(e) {
+  list = list.filter((item) => item.name !== e.currentTarget.previousElementSibling.textContent);
+  e.currentTarget.parentElement.remove();
 }
 
 function addEventRemoveTask(btn) {
@@ -42,9 +33,8 @@ function addEventRemoveTask(btn) {
 };
 
 function checkForDuplicate(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
-  const isKeyContainsValue = list.some((item) => item.name === inputValue.value.trim())
-  if (isKeyContainsValue) {
+  const isKeysContainsValue = list.some((item) => item.name === e.currentTarget.previousElementSibling.value)
+  if (isKeysContainsValue) {
     clearInputValue(e);
     return true
   };
@@ -55,12 +45,12 @@ function addEventChangeStatus(btn) {
 }
 
 function changeStatus(e) {
-  const taskValue = e.currentTarget.closest('.todo__info').querySelector('.todo__text')
-  const nameIndex = list.findIndex((item) => item.name === taskValue.textContent);
+  const nameIndex = list.findIndex((item) => item.name === e.currentTarget.parentElement.nextElementSibling.textContent);
   const checkStatus = e.currentTarget.closest(`.${STATUS.DONE}`);
 
   e.currentTarget.closest('.todo__task').classList.toggle(STATUS.DONE);
   list[nameIndex].status = checkStatus ? STATUS.IN_PROGRESS : STATUS.DONE;
+  console.log(list);
 }
 
 function createTooltip() {
@@ -69,13 +59,10 @@ function createTooltip() {
 }
 
 function callTooltip(e) {
-  const parent =  e.currentTarget.closest('.todo__add')
-  const todoInput = parent.querySelector('.todo__input')
-
-  parent.append(createTooltip());
-  todoInput.setAttribute('readonly', true)
+  e.currentTarget.parentElement.append(createTooltip());
+  e.currentTarget.previousElementSibling.setAttribute('readonly', true)
   setTimeout(() => {
-    todoInput.removeAttribute('readonly')
+    todoInputs.forEach(todoInput => todoInput.removeAttribute('readonly'));
     document.querySelector('.tooltip').remove()
   }, 1000);
 }
@@ -90,7 +77,7 @@ function createTaskElement() {
   <span class="todo__content"></span>`;
 
   const taskText = document.createElement('p');
-  taskText.className = 'todo__text'; 
+  taskText.className = 'todo__text';
   taskText.textContent = list[list.length - 1].name;
 
   const taskBtn = document.createElement('button');
@@ -103,13 +90,12 @@ function createTaskElement() {
   task.append(taskBtn);
 
   addEventRemoveTask(taskBtn);
-  addEventChangeStatus(taskLabel.querySelector('.todo__field'))
+  addEventChangeStatus(taskLabel.firstElementChild)
   return task;
 };
 
 function checkError(e) {
-  const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input')
-  const isEmpty = inputValue.value.trim() === '';
+  const isEmpty = e.currentTarget.previousElementSibling.value === '';
   if (isEmpty) return true;
   if (checkForDuplicate(e)) {
     callTooltip(e);
