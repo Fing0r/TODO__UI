@@ -1,0 +1,296 @@
+:root {
+  --font-family: "Roboto", sans-serif;
+  --white-color: #fff;
+  --dark: #17171C;
+  --blue-btn: #4B5EFC;
+  --grey-btn: #4E505F;
+  --dark-btn: #2E2F38;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  border: none;
+  font: inherit;
+}
+
+input::placeholder {
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-family, sans-serif);
+  -webkit-text-size-adjust: 100%;
+  font-size: 18px;
+  line-height: calc(21/ 18);
+}
+
+.todo__container {
+  max-width: 476px;
+  padding: 25px 8px;
+  min-height: 0px;
+  width: 100%;
+}
+
+.todo__info {}
+
+.todo__info:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.todo__info--high {}
+
+.todo__info--low {}
+
+.todo__title {
+  text-transform: uppercase;
+  font-size: inherit;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.todo__add {
+  position: relative;
+  min-height: 45px;
+  border: 1px solid #989898;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #BBBBBB;
+  margin-bottom: 12px;
+  padding: 12px;
+}
+
+.todo__label {
+  height: 100%;
+}
+
+.todo__input {
+  flex: 0 1 100%;
+  height: 100%;
+  padding: 0;
+  padding-right: 12px;
+  outline: transparent;
+}
+
+.todo__input::placeholder {
+  color: #BBBBBB;
+}
+
+.todo__btn-add {
+  display: block;
+  position: relative;
+  min-width: 20px;
+  height: 20px;
+}
+
+.todo__list {}
+
+.todo__task {
+  display: flex;
+  min-height: 43px;
+  border: 1px solid #989898;
+  border-radius: 6px;
+  padding: 11px;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  color: #202020;
+}
+
+.todo__task.Done {
+  background-color: #F4F4F4;
+}
+
+.todo__task:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.todo__text {
+  padding-right: 18px;
+  flex: 0 1 100%;
+}
+
+.todo__checkbox {
+  position: relative;
+  min-width: 21px;
+  height: 21px;
+  display: block;
+  margin-right: 12px;
+}
+
+.todo__field {
+  appearance: none;
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}
+
+.todo__content {
+  cursor: pointer;
+}
+
+.todo__content::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: 1px solid #998899;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.todo__content::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background-color: #C4C4C4;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.todo__field:checked+.todo__content::after {
+  opacity: 1;
+}
+
+.todo__field:disabled+.todo__content {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.todo__btn-close {
+  display: block;
+  position: relative;
+  min-width: 16px;
+  height: 16px;
+}
+
+.todo__btn-close::before,
+.todo__btn-close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 1px;
+  height: 100%;
+  background-color: #998899;
+}
+
+.todo__btn-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 100%;
+  height: 1px;
+}
+
+.todo__btn-add::before,
+.todo__btn-add::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 100%;
+  background-color: #998899;
+}
+
+.todo__btn-add::before {
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 1px;
+}
+
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  top: -37px;
+  left: 50%;
+  text-align: center;
+}
+
+.tooltip .tooltiptext {
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  visibility: visible;
+  transform: translateX(-50%);
+  z-index: 1;
+}

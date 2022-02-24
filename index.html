@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <title>TODO List</title>
+</head>
+
+<body>
+  <div class="todo">
+    <div class="todo__container">
+      <form class="todo__info todo__info--high">
+        <h2 class="todo__title">high</h2>
+        <div class="todo__add">
+          <label class="todo__label" for=""></label>
+          <input class="todo__input" placeholder="Добавить важных дел" type="text">
+          <button class="todo__btn-add" data-btn="add" data-priority="high">
+          </button>
+        </div>
+        <ul class="todo__list">
+        </ul>
+      </form>
+      <form class="todo__info todo__info--low">
+        <h2 class="todo__title">low</h2>
+        <div class="todo__add">
+          <label class="todo__label" for=""></label>
+          <input class="todo__input" placeholder="Добавить" type="text">
+          <button class="todo__btn-add" data-btn="add" data-priority="low">
+          </button>
+        </div>
+        <ul class="todo__list">
+        </ul>
+      </form>
+    </div>
+  </div>
+  <template id="template">
+    <div class="tooltip">
+      <span class="tooltiptext">Такая задача уже есть!</span>
+    </div>
+  </template>
+  <script src="./main.js" type="module"></script>
+</body>
+
+</html>
