@@ -5,12 +5,7 @@ view.btnsAddTask.forEach(btnAddTask => {
     e.preventDefault();
     if (view.checkError(e)) return;
     view.addTask(e);
-
-    e.currentTarget
-      .closest(".todo__info")
-      .querySelector(".todo__list")
-      .append(view.createTaskElement()); 
-
+    e.currentTarget.parentElement.nextElementSibling.append(view.createTaskElement());
     view.clearInputValue(e);
   });
 });
