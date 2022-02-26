@@ -113,7 +113,7 @@ function checkError(e) {
   if (isEmpty) return true;
   if (checkForDuplicate(e)) {
     callTooltip(e);
-    return true;
+    return true; 
   }
 };
 
