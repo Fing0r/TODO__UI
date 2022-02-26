@@ -110,6 +110,7 @@ function createTaskElement() {
 function checkError(e) {
   const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input')
   const isEmpty = inputValue.value.trim() === '';
+<<<<<<< HEAD
 
   try {
     if (isEmpty) {
@@ -122,6 +123,12 @@ function checkError(e) {
   } catch (e) {
     console.log(e.message)
     return true;
+=======
+  if (isEmpty) return true;
+  if (checkForDuplicate(e)) {
+    callTooltip(e);
+    return true; 
+>>>>>>> dev
   }
 };
 
