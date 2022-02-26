@@ -15,8 +15,8 @@ btnsAddTask.forEach(element => {
 });
 
 function addTask(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
-  inputValue
+  const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input');
+
   list.push({
     name: inputValue.value.trim(),
     priority: e.currentTarget.dataset.priority,
@@ -25,7 +25,7 @@ function addTask(e) {
 };
 
 function clearInputValue(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
+  const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input');
 
   inputValue.value = '';
 };
@@ -42,7 +42,7 @@ function addEventRemoveTask(btn) {
 };
 
 function checkForDuplicate(e) {
-  const inputValue =  e.currentTarget.closest('.todo__info').querySelector('.todo__input');
+  const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input');
   const isKeyContainsValue = list.some((item) => item.name === inputValue.value.trim())
   if (isKeyContainsValue) {
     clearInputValue(e);
@@ -69,7 +69,7 @@ function createTooltip() {
 }
 
 function callTooltip(e) {
-  const parent =  e.currentTarget.closest('.todo__add')
+  const parent = e.currentTarget.closest('.todo__add')
   const todoInput = parent.querySelector('.todo__input')
 
   parent.append(createTooltip());
@@ -90,7 +90,7 @@ function createTaskElement() {
   <span class="todo__content"></span>`;
 
   const taskText = document.createElement('p');
-  taskText.className = 'todo__text'; 
+  taskText.className = 'todo__text';
   taskText.textContent = list[list.length - 1].name;
 
   const taskBtn = document.createElement('button');
@@ -110,9 +110,17 @@ function createTaskElement() {
 function checkError(e) {
   const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input')
   const isEmpty = inputValue.value.trim() === '';
-  if (isEmpty) return true;
-  if (checkForDuplicate(e)) {
-    callTooltip(e);
+
+  try {
+    if (isEmpty) {
+      throw new SyntaxError("Пустое значение");
+    }
+    if (checkForDuplicate(e)) {
+      callTooltip(e);
+      throw new SyntaxError("Повторная задача");
+    }
+  } catch (e) {
+    console.log(e.message)
     return true;
   }
 };
