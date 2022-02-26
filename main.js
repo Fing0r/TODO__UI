@@ -19,6 +19,7 @@ view.btnsDeletTask.forEach(btnDeletTask => {
   btnDeletTask.addEventListener('click', view.removeTask)
 });
 
+
 view.btnsCheck.forEach(btnCheck => {
   btnCheck.addEventListener('click', view.changeStatus)
 });
