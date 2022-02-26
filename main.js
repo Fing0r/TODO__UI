@@ -10,7 +10,7 @@ function addTask(e) {
     priority: e.currentTarget.dataset.priority,
     status: STATUS.IN_PROGRESS
   });
-};
+}; 
 
 function clearInputValue(e) {
   const inputValue = e.currentTarget.closest('.todo__info').querySelector('.todo__input');

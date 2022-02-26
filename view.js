@@ -8,4 +8,4 @@ export const UI_ELEMENTS = {
 export const STATUS = {
   DONE: "Done",
   IN_PROGRESS: "In progress",
-}
+} 
